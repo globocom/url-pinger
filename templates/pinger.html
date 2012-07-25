@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            table {
+                border-collapse: collapse;
+            }
+
+            td {
+                border: solid #888;
+                border-width: 1px;
+                font-weight: bold;
+                padding: 0.75em 1.2em;
+                position: relative;
+            }
+            .ok {
+                background-color: green;
+            }
+            .fail {
+                background-color: red;
+            }
+            .status {
+                font-size: 20px;
+            }
+        </style>
+        <meta http-equiv="Refresh" content="60"/>
+    </head>
+    <body>
+        <div class="content">
+            <table>
+                <tr>
+                    <td>Site</td>
+                    <td>Status</td>
+                </tr>
+                {% for site, status in result %}
+                    <tr>
+                        <td><a href="{{ site }}">{{ site }}</a></td>
+                        <td class="status {{ status }}"></td>
+                    </tr>
+                {% endfor %}
+            </table>
+            Last update: {{ last_update }}
+        </div>
+    </body>
+</html>
