@@ -15,7 +15,7 @@ def home():
             response = requests.get(site, timeout=1, allow_redirects=True)
             assert response.text != ''
             assert response.status_code == 200
-        except (requests.exceptions.Timeout, socket.timeout, AssertionError) as err:
+        except (requests.exceptions.RequestException, socket.timeout, AssertionError) as err:
             result.append((site, "fail"))
         else:
             result.append((site, "ok"))
