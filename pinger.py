@@ -25,8 +25,11 @@ def home():
             response = requests.get(site, timeout=REQUEST_TIMEOUT, allow_redirects=True, auth=auth)
             assert response.text != ''
             assert response.status_code == 200
-        except (requests.exceptions.RequestException, socket.timeout, AssertionError) as err:
-            print("Failed to read {0} (timeout={1})".format(site, REQUEST_TIMEOUT))
+        except (requests.exceptions.Timeout, socket.timeout) as err:
+            print("Timeout to read {0} (timeout={1}): {2}".format(site, REQUEST_TIMEOUT, str(err)))
+            result.append((site, "timeout"))
+        except (requests.exceptions.RequestException, AssertionError) as err:
+            print("Failed to read {0} (timeout={1}): {2}".format(site, REQUEST_TIMEOUT, str(err)))
             result.append((site, "fail"))
         else:
             result.append((site, "ok"))
