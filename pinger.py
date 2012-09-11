@@ -8,6 +8,9 @@ from flask import Flask, render_template
 SITES_TXT = os.getenv("SITES_TXT", "sites.txt")
 REQUEST_TIMEOUT = float(os.getenv("REQUEST_TIMEOUT", "1"))
 REFRESH_TIMEOUT = float(os.getenv("REFRESH_TIMEOUT", "60"))
+HOST = os.getenv("HOST", "localhost")
+PORT = int(os.getenv("PORT", "5000"))
+DEBUG = os.getenv("DEBUG", "true") == "true"
 
 app = Flask(__name__)
 
@@ -45,6 +48,6 @@ def extract_site_and_auth(line):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host=HOST, port=PORT, debug=DEBUG)
 
 
