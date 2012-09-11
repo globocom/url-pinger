@@ -17,7 +17,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    sites = open(SITES_TXT).readlines()
+    sites = get_lines(SITES_TXT)
     result = []
     for line in sites:
         site, auth = extract_site_and_auth(line.strip())
@@ -37,6 +37,10 @@ def home():
         refresh_timeout=REFRESH_TIMEOUT)
     return render_template('pinger.html', **template_vars)
 
+
+def get_lines(file_path):
+    with open(file_path) as f:
+        return [line.strip() for line in f.readlines() if line.strip()]
 
 def extract_site_and_auth(line):
     if ' ' in line:
