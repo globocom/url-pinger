@@ -1,1 +1,2 @@
 http://globo.com
+http://httpbin.org/basic-auth/user/passwd user:passwd

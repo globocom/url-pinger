@@ -13,17 +13,24 @@
                 padding: 0.75em 1.2em;
                 position: relative;
             }
+
             .ok {
                 background-color: green;
             }
+
             .fail {
                 background-color: red;
             }
+
             .status {
                 font-size: 20px;
             }
+
+            .last-update {
+              margin-top: 20px;
+            }
         </style>
-        <meta http-equiv="Refresh" content="60"/>
+        <meta http-equiv="Refresh" content="{{ refresh_timeout }}" />
     </head>
     <body>
         <div class="content">
@@ -39,7 +46,7 @@
                     </tr>
                 {% endfor %}
             </table>
-            Last update: {{ last_update }}
+            <div class="last-update">Last update: {{ last_update }}</div>
         </div>
     </body>
 </html>
